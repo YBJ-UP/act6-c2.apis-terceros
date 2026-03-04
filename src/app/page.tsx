@@ -12,9 +12,9 @@ export default function Home() {
   async function handleClick(){
     try {
       setLoading(true)
-      const res = await fetchMeowFacts()
-      console.log(res)
+      const res = await fetchMeowFacts(2)
       setMeowFacts(res)
+      console.log(meowFacts)
     } catch(error) {
       console.log(error)
     } finally {
@@ -25,6 +25,7 @@ export default function Home() {
   return (
     <>
       <button type="button" onClick={handleClick}>Obtener dato curioso</button>
+      {isLoading && <p>Cargando...</p>}
       {meowFacts && meowFacts.data.forEach( fact => <p>{fact}</p> )}
     </>
   );

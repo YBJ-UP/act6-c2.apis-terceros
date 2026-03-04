@@ -1,7 +1,6 @@
 "use client"
 
 import meowFactsResponse from "@/model/meowfact";
-import { errorType } from "@/model/error";
 import { fetchMeowFacts } from "@/service/meowfactsService";
 import Image from "next/image";
 import { useState } from "react";

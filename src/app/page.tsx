@@ -14,7 +14,6 @@ export default function Home() {
       setLoading(true)
       const res = await fetchMeowFacts(2)
       setMeowFacts(res)
-      console.log(meowFacts)
     } catch(error) {
       console.log(error)
     } finally {
@@ -26,7 +25,7 @@ export default function Home() {
     <>
       <button type="button" onClick={handleClick}>Obtener dato curioso</button>
       {isLoading && <p>Cargando...</p>}
-      {meowFacts && meowFacts.data.forEach( fact => <p>{fact}</p> )}
+      {meowFacts && meowFacts.data.map( (fact:string, key:number) => <p key={key}>{fact}</p> )}
     </>
   );
 }

@@ -38,7 +38,7 @@ export default function Home() {
       <h1 className="text-2xl font-bold mb-5">Meow Facts - Datos curiosos sobre gatos</h1>
       <div className="flex gap-5 items-center mb-5">
         <button type="button" onClick={handleFetchClick} className="px-5 py-2 rounded-2xl bg-purple-600">Obtener dato curioso</button>
-        <div className="flex gap-2 bg-cyan-500 px-5 py-2 rounded-2xl">
+        <div className="flex gap-2 bg-cyan-600 px-5 py-2 rounded-2xl">
           <label htmlFor="nombre">Cantidad de datos curiosos:</label>
           <input type="number" name="nombre" id="id" className="w-10" value={meowFactsAmount.toString()} onChange={(e) => handleAmountClick(e.target.value.trim())} />
         </div>

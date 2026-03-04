@@ -9,6 +9,14 @@ export default function cataas() {
     const [selection, setSelection] = useState<"image" | "gif">("image")
     const [ isLoading, setLoading ] = useState<boolean>(false)
 
+    function switchSelection() {
+        if (selection == "image") {
+            setSelection("gif")
+        } else {
+            setSelection("image")
+        }
+    }
+
     async function handleImageClick(message?:string) {
         try{
             setImagen({tags:[], url:""})

@@ -1,4 +1,4 @@
 export default interface cataasResponse {
-    tags: [string],
+    tags: string[],
     url:string
 }

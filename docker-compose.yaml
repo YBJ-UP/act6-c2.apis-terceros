@@ -1,0 +1,11 @@
+services:
+  nextjs:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: nextjs_container
+    restart: unless-stopped
+    ports:
+      - "${PORT}:${PORT}"
+    env_file:
+      - .env

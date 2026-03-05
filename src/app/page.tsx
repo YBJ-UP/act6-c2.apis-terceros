@@ -21,7 +21,7 @@ export default function Home() {
       }
       setMeowFacts(res)
     } catch(error) {
-      console.log(error)
+      throw new Error("Error inesperado" + error)
     } finally {
       setLoading(false)
     }
@@ -43,15 +43,19 @@ export default function Home() {
           <input type="number" name="nombre" id="id" className="w-10" value={meowFactsAmount.toString()} onChange={(e) => handleAmountClick(e.target.value.trim())} />
         </div>
       </div>
+
       {isLoading &&
         <div className="flex flex-col justify-center items-center my-10">
           <Image src={"/michibaile.gif"} alt="Cargando..." width={200} height={100}/>
           <p>Cargando...</p>
-        </div>}
-        <div className="flex flex-col gap-2 p-7 rounded-2xl bg-fuchsia-700">
-          {meowFacts.data.length == 0 && <p>Aquí van los datos curiosos (solo hay 89 en la API).</p>}
-          {meowFacts && meowFacts.data.map( (fact:string, key:number) => <p key={key}>{key+1}.- {fact}</p> )}
-        </div>
+        </div> ||
+          <div className="flex flex-col gap-2 p-7 rounded-2xl bg-fuchsia-700">
+            {meowFacts.data.length == 0 && <p>Aquí van los datos curiosos (solo hay 89 en la API).</p>}
+            {meowFacts && meowFacts.data.map( (fact:string, key:number) => <p key={key}>{key+1}.- {fact}</p> )}
+          </div>
+        }
+
+        
     </>
   );
 }

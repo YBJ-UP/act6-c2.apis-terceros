@@ -55,6 +55,7 @@ export default function cataas() {
     }
 
     if (error) {
+        console.log("Ocurrió un error")
         return (
             <div>
                 <h1>Error al conseguir la imagen: {error.error}</h1>

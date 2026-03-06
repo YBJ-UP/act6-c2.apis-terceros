@@ -61,9 +61,9 @@ export default function Home() {
           <Image src={"/michibaile.gif"} alt="Cargando..." width={200} height={100}/>
           <p>Cargando...</p>
         </div> ||
-          <div className="flex flex-col gap-2 p-7">
+          <div className="flex flex-col gap-2 p-7 overflow-scroll">
             {meowFacts.data.length == 0 && <p>Aquí van los datos curiosos (solo hay 89 en la API).</p>}
-            {meowFacts && meowFacts.data.map( (fact:string, key:number) => <p key={key} className="my-3 p-5 h-20 rounded-2xl bg-fuchsia-700">{key+1}.- {fact}</p> )}
+            {meowFacts && meowFacts.data.map( (fact:string, key:number) => <p key={key} className="my-1 p-5 h-20 rounded-2xl bg-fuchsia-700">{key+1}.- {fact}</p> )}
           </div>
         }
 

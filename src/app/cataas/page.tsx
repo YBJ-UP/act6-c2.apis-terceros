@@ -4,12 +4,14 @@ import Image from "next/image"
 import cataasResponse from "@/model/cataas"
 import { getGIF, getRandomImage } from "@/service/cataasService"
 import { useState } from "react"
+import { errorType } from "@/model/error"
 
 export default function cataas() {
     const [imagen, setImagen] = useState<cataasResponse>({tags:[], url:""})
     const [message, setMessage] = useState<string>("")
     const [selection, setSelection] = useState<"image" | "gif">("image")
-    const [ isLoading, setLoading ] = useState<boolean>(false)
+    const [isLoading, setLoading] = useState<boolean>(false)
+    const [error, setError] = useState<errorType>()
 
     function switchSelection() {
         if (selection == "image") {
@@ -25,11 +27,12 @@ export default function cataas() {
             setLoading(true)
             const res = await getRandomImage(message)
             if ('error' in res) {
-                throw new Error("Error al conseguir imagen: " + res.message)
+                setError(res)
+                throw new Error("Error al conseguir imagen: " + res.message + "\nCódigo de error: " + res.error)
             }
             setImagen(res)
-        } catch(error) {
-            throw new Error("Error inesperado: " + error)
+        } catch(error:any) {
+            throw new Error(error)
         } finally {
             setLoading(false)
         }
@@ -49,6 +52,15 @@ export default function cataas() {
         } finally {
             setLoading(false)
         }
+    }
+
+    if (error) {
+        return (
+            <div>
+                <h1>Error al conseguir la imagen: {error.error}</h1>
+                <h2>Detalles del error: {error.message || 'No se otorgaron detalles sobre el error'}</h2>
+            </div>
+        )
     }
 
     return (

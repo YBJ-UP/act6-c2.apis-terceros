@@ -63,7 +63,7 @@ export default function Home() {
         </div> ||
           <div className="flex flex-col gap-2 p-7">
             {meowFacts.data.length == 0 && <p>Aquí van los datos curiosos (solo hay 89 en la API).</p>}
-            {meowFacts && meowFacts.data.map( (fact:string, key:number) => <p key={key} className="m-3 rounded-2xl bg-fuchsia-700">{key+1}.- {fact}</p> )}
+            {meowFacts && meowFacts.data.map( (fact:string, key:number) => <p key={key} className="my-3 p-5 h-20 rounded-2xl bg-fuchsia-700">{key+1}.- {fact}</p> )}
           </div>
         }
 

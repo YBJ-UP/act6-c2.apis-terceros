@@ -1,5 +1,6 @@
 "use client"
 
+import { errorType } from "@/model/error";
 import meowFactsResponse from "@/model/meowfact";
 import { fetchMeowFacts } from "@/service/meowfactsService";
 import Image from "next/image";
@@ -10,6 +11,7 @@ export default function Home() {
   const [ meowFacts, setMeowFacts ] = useState<meowFactsResponse>({data:[]})
   const [ meowFactsAmount, setMeowFactsAmount ] = useState<number>(1)
   const [ isLoading, setLoading ] = useState<boolean>(false)
+  const [error, setError] = useState<errorType>()
 
   async function handleFetchClick(){
     try {
@@ -17,6 +19,7 @@ export default function Home() {
       setLoading(true)
       const res = await fetchMeowFacts(meowFactsAmount)
       if ( 'error' in res ){
+        setError(res)
         throw new Error("Error al obtener los datos: " + res.message )
       }
       setMeowFacts(res)
@@ -32,6 +35,15 @@ export default function Home() {
       setMeowFactsAmount(Number(numero))
     }
   }
+
+  if (error) {
+        return (
+            <div>
+                <h1>Error al conseguir los datos: {error.error}</h1>
+                <h2>Detalles del error: {error.message || 'No se otorgaron detalles sobre el error'}</h2>
+            </div>
+        )
+    }
 
   return (
     <>
